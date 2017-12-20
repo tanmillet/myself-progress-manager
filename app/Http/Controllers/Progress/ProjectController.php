@@ -6,6 +6,7 @@ use App\Http\Controllers\Progress\Requests\UpProjectValidator;
 use App\Http\Controllers\Progress\Traits\ProjectTrait;
 use App\Http\Controllers\Progress\Traits\TaskTrait;
 use App\Project;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -36,13 +37,22 @@ class ProjectController extends ApiContr
     public function projectDetail($id, $task_progress = 0)
     {
         //定义
+        $task_progress = (empty($task_progress)) ? 0 :base64_decode($task_progress);
         $tasks = $this->getTasks($id, $task_progress);
 
         $project = $this->getProject($id);
 
-        // dump($project);die();
+        return view('progress-app.project-detail', compact('tasks', 'project','task_progress'));
+    }
 
-        return view('progress-app.project-detail', compact('tasks', 'project'));
+    /**
+     * @author Terry Lucas
+     * @param $project_id
+     * @param $task_progress
+     */
+    public function ajax_tasks($project_id , $task_progress)
+    {
+
     }
 
     /**

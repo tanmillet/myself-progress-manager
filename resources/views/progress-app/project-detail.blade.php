@@ -14,7 +14,8 @@
                                     </a>
                                     <div>
                                         <div class="h3 m-t-xs m-b-xs">{{$project->project_name}}</div>
-                                        <small class="text-muted" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="项目创始人"><i
+                                        <small class="text-muted" data-toggle="tooltip" data-placement="bottom" title=""
+                                               data-original-title="项目创始人"><i
                                                     class="fa icon-user"></i> {{$project->project_creater}}</small>
                                     </div>
                                 </div>
@@ -57,17 +58,17 @@
                     <section class="vbox">
                         <header class="header bg-light lt">
                             <ul class="nav nav-tabs nav-white">
-                                <li class="active"><a href="#activity" data-toggle="tab">待处理</a></li>
-                                <li class=""><a href="#events" data-toggle="tab">处理中</a></li>
-                                <li class=""><a href="#interaction" data-toggle="tab">已完成</a></li>
-                                <li class=""><a href="#interaction" data-toggle="tab">已取消</a></li>
+                                @foreach(config('progressbase.task_progress') as $key=>$tp)
+                                    <li class="{{($key == $task_progress) ? 'active' : ''}}"><a href="/pro/project/detail/{{base64_encode($project->id)}}/{{base64_encode($key)}}">{{$tp}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </header>
                         <section class="scrollable">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="activity">
+                                <div class="tab-pane active">
                                     <ul class="list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
-                                        @foreach($tasks as $task)
+                                        @forelse($tasks as $task)
                                             <li class="list-group-item">
                                                 <a href="#" class="thumb-sm pull-left m-r-sm">
                                                     <img src="/tan-admin/images/a0.png">
@@ -92,7 +93,9 @@
                                                     <small style="font-size: 12px;">{{$task->task_title}}</small>
                                                     <small>
                                                         <div class="comment-action m-t-sm">
-                                                            <a href="#" class="btn btn-xs btn-default m-t-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="任务优先度"><span
+                                                            <a href="#" class="btn btn-xs btn-default m-t-xs"
+                                                               data-toggle="tooltip" data-placement="top" title=""
+                                                               data-original-title="任务优先度"><span
                                                                         style="color: red;font-weight: bold;">{{$task->task_priority}}</span></a>
                                                             <div class="btn-group">
                                                                 <button data-toggle="dropdown"
@@ -102,45 +105,47 @@
                                                                     <span class="caret"></span>
                                                                 </button>
                                                                 <ul class="dropdown-menu dropdown-select">
-                                                                    @foreach(config('progressbase.task_progress') as $key=>$task_progress)
+                                                                    @foreach(config('progressbase.task_progress') as $key=>$tp)
                                                                         <li class=""><input type="radio" name="d-s-r"
                                                                                             value="{{$key}}"><a
-                                                                                    href="#">{{$task_progress}}</a></li>
+                                                                                    href="#">{{$tp}}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </div>
-                                                            <a href="#" class="btn btn-xs btn-default m-t-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="任务开始时间"><i
+                                                            <a href="#" class="btn btn-xs btn-default m-t-xs"
+                                                               data-toggle="tooltip" data-placement="top" title=""
+                                                               data-original-title="任务开始时间"><i
                                                                         class="fa fa-calendar"></i> {{$task->task_start_date}}
                                                             </a>
-                                                            <a href="#" class="btn btn-xs btn-default m-t-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="任务结束时间"><i
+                                                            <a href="#" class="btn btn-xs btn-default m-t-xs"
+                                                               data-toggle="tooltip" data-placement="top" title=""
+                                                               data-original-title="任务结束时间"><i
                                                                         class="fa fa-calendar"></i> {{$task->task_end_date}}
                                                             </a>
-                                                                <button type="button"
-                                                                        class="btn btn-xs btn-default  m-t-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="任务需要天数">{{diff_between_two_days($task->task_start_date, $task->task_end_date)}}
-                                                                    days
-                                                                </button>
-                                                                <button type="button"
-                                                                        class="btn btn-xs btn-danger  m-t-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="任务剩余天数">
-                                                                    {{diff_between_two_days($task->task_end_date , date('Y-m-d' , time()))}}
-                                                                    days
-                                                                </button>
-                                                            </div>
+                                                            <button type="button"
+                                                                    class="btn btn-xs btn-default  m-t-xs"
+                                                                    data-toggle="tooltip" data-placement="top" title=""
+                                                                    data-original-title="任务需要天数">{{diff_between_two_days($task->task_start_date, $task->task_end_date)}}
+                                                                days
+                                                            </button>
+                                                            <button type="button"
+                                                                    class="btn btn-xs btn-danger  m-t-xs"
+                                                                    data-toggle="tooltip" data-placement="top" title=""
+                                                                    data-original-title="任务剩余天数">
+                                                                {{diff_between_two_days($task->task_end_date , date('Y-m-d' , time()))}}
+                                                                days
+                                                            </button>
+                                                        </div>
                                                     </small>
                                                 </a>
 
                                             </li>
-                                        @endforeach
+                                        @empty
+                                            <li class="list-group-item">
+                                                <a href="/pro/show/task">添加任务</a>
+                                            </li>
+                                        @endforelse
                                     </ul>
-                                </div>
-                                <div class="tab-pane" id="events">
-                                    <div class="text-center wrapper">
-                                        <i class="fa fa-spinner fa fa-spin fa fa-large"></i>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="interaction">
-                                    <div class="text-center wrapper">
-                                        <i class="fa fa-spinner fa fa-spin fa fa-large"></i>
-                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -194,6 +199,6 @@
 @endsection
 
 @section('tan-js')
-    <script src="/admin2-app/assets/vendor/require.js"
-            data-main="/admin2-app/assets/app/controller/op-project-ctrl"></script>
+    <script src="/tan-admin/assets/vendor/require.js"
+            data-main="/tan-admin/assets/app/controller/op-project-ctrl"></script>
 @endsection

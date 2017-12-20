@@ -185,6 +185,6 @@
     <script src="/tan-admin/js/wysiwyg/bootstrap-wysiwyg.js"></script>
     <script src="/tan-admin/js/wysiwyg/demo.js"></script>
 
-    <script src="/admin2-app/assets/vendor/require.js"
-            data-main="/admin2-app/assets/app/controller/op-project-ctrl"></script>
+    <script src="/tan-admin/assets/vendor/require.js"
+            data-main="/tan-admin/assets/app/controller/op-project-ctrl"></script>
 @endsection

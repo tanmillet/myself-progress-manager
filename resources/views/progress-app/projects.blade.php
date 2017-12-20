@@ -52,6 +52,6 @@
 @endsection
 
 @section('tan-js')
-    <script src="/admin2-app/assets/vendor/require.js"
-            data-main="/admin2-app/assets/app/controller/op-project-ctrl"></script>
+    <script src="/tan-admin/assets/vendor/require.js"
+            data-main="/tan-admin/assets/app/controller/op-project-ctrl"></script>
 @endsection

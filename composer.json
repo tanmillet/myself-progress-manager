@@ -22,7 +22,11 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+          "LucasRBAC\\Permission\\": "packages/rbac/src/",
+          "LucasRBAC\\Validator\\": "packages/validator/src/",
+          "LucasUpload\\FilePusher\\": "packages/uploadfile/src/",
+          "LucasCurl\\CurlPusher\\": "packages/curl/src/"
         }
     },
     "autoload-dev": {

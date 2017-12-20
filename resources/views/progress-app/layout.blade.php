@@ -16,8 +16,7 @@
     <link rel="stylesheet" href="/tan-admin/css/simple-line-icons.css" type="text/css"/>
     <link rel="stylesheet" href="/tan-admin/css/font.css" type="text/css"/>
     <link rel="stylesheet" href="/tan-admin/css/app.css" type="text/css"/>
-
-    <link rel="stylesheet" href="/admin2-app/dist/css/sweetalert.css">
+    <link rel="stylesheet" href="/tan-admin/css/sweetalert.css">
 
     @yield('tan-css')
     <!--[if lt IE 9]>

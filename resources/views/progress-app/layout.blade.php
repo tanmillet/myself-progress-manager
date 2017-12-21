@@ -111,7 +111,7 @@
                             <a href="#">修改信息</a>
                         </li>
                         <li>
-                            <a href="profile.html">个人信息</a>
+                            <a href="/pro/profile">个人信息</a>
                         </li>
                         <li>
                             <a href="#">
@@ -151,7 +151,7 @@
                                         快捷方式
                                     </li>
                                     <li>
-                                        <a href="index.html">
+                                        <a href="/pro/profile">
                                             <i class="icon-user icon text-success"></i>
                                             <span class="font-bold">个人信息</span>
                                         </a>
@@ -257,7 +257,7 @@
                                         <a href="#">修改信息</a>
                                     </li>
                                     <li>
-                                        <a href="profile.html">个人信息</a>
+                                        <a href="/pro/profile">个人信息</a>
                                     </li>
                                     <li>
                                         <a href="#">

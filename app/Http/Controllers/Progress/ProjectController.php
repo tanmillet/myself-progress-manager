@@ -16,6 +16,7 @@ class ProjectController extends ApiContr
 {
     use ProjectTrait, TaskTrait;
 
+    protected $test ='';
     /**
      * Display a listing of the resource.
      *
